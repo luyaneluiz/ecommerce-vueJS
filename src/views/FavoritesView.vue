@@ -19,10 +19,13 @@
     </template>
     <template v-else>
       <section class="favorites__list">
-        <div v-for="product in favorites" :key="product">
+        <div class="favorite__item" v-for="product in favorites" :key="product">
           <img class="item__image" :src="product.image" alt="" />
-          <h2>{{ product.title }}</h2>
-          <h1>{{ product.price }}</h1>
+          <div class="item__description">
+            <h4>{{ product.title }}</h4>
+            <h3>{{ product.price }}</h3>
+          </div>
+          <button style="width: 100%">Adicionar ao carrinho</button>
         </div>
       </section>
     </template>
@@ -39,6 +42,15 @@ main {
 
 .favorites__title {
   font-weight: bold;
+}
+
+.favorites__list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5%;
 }
 
 .favorites__list-empty {
@@ -66,6 +78,40 @@ main {
   text-align: center;
 }
 
+.favorite__item {
+  width: min(75vw, 315px);
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item__image {
+  width: 100%;
+  height: 75%;
+  object-position: center;
+  object-fit: cover;
+}
+
+.item__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  width: 100%;
+}
+
+.item__description h4 {
+  font-size: min(4vw, 20px);
+}
+
+.item__description h3 {
+  font-size: min(3vw, 18px);
+  font-weight: 600;
+}
+
 button {
   cursor: pointer;
   padding: 15px 25px;
@@ -75,8 +121,13 @@ button {
 
   color: #fff;
   background-color: rgb(23, 174, 124);
+  transition: all 0.5s;
   border: none;
   border-radius: 5px;
+}
+
+button:hover {
+  background-color: #26b3a4;
 }
 </style>
 
