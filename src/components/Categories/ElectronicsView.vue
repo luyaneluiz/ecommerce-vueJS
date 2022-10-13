@@ -1,13 +1,17 @@
 <template>
   <main class="products">
     <div class="products__item" v-for="product in products" :key="product">
-      <img class="item__image" :src="product.image" alt="" />
-
+      <router-link :to="{ name: 'product', params: { id: product.id } }">
+        <img class="item__image" :src="product.image" alt="" />
+      </router-link>
       <section>
-        <aside>
+        <router-link
+          :to="{ name: 'product', params: { id: product.id } }"
+          style="width: 90%"
+        >
           <h2>{{ product.title }}</h2>
           <h1>{{ product.price }}</h1>
-        </aside>
+        </router-link>
         <div class="item__actions">
           <img
             v-on:click="addFavorite(product)"
@@ -21,7 +25,6 @@
             src="../../assets/favorite.svg"
             alt=""
           />
-          <img src="../../assets/cart-add.svg" alt="" />
         </div>
       </section>
     </div>
@@ -31,7 +34,7 @@
 <style scoped>
 .products {
   display: flex;
-  gap: 10vw 4vw;
+  gap: 4vw;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -56,7 +59,6 @@ section {
   height: 25%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 15px;
 }
 
@@ -79,6 +81,8 @@ section {
 </style>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -134,7 +138,6 @@ export default {
     addFavorite(product) {
       this.favorite.push(product);
       localStorage.setItem("favorite", JSON.stringify(this.favorite));
-      console.log(this.favorite);
     },
 
     inFavorite(product) {
@@ -152,6 +155,14 @@ export default {
         localStorage.setItem("favorite", JSON.stringify(this.favorite));
       }
     },
+  },
+
+  created() {
+    axios.get("http://127.0.0.1:5173/products.json").then((res) => {
+      this.products = res.data.products.filter((element) => {
+        return element.category === "Electronics";
+      });
+    });
   },
 };
 </script>

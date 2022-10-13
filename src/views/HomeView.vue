@@ -56,6 +56,7 @@ section.header {
   display: flex;
   justify-content: space-around;
   width: max(70%, 315px);
+  padding: 20px;
 }
 
 .categories__list a {
@@ -67,6 +68,10 @@ section.header {
 a.active {
   color: var(--text-color-brown);
   font-weight: bold;
+}
+
+.products a {
+  color: black;
 }
 </style>
 
