@@ -7,6 +7,7 @@
 
       <aside>
         <h2>{{ title }}</h2>
+
         <div class="product__stars">
           <img
             src="../components/icons/star_check.svg"
@@ -26,8 +27,11 @@
           />
           <img src="../components/icons/star.svg" alt="Estrela vazada" />
         </div>
+
         <div class="product__share"></div>
+
         <h3 class="product__price">{{ price }}</h3>
+
         <div class="product__description">
           <h4>Description</h4>
           <p>
@@ -37,12 +41,13 @@
             Incidunt!
           </p>
         </div>
+
         <div class="product__amount">
-          <p>Quantidade</p>
+          <h4>Quantidade</h4>
           <div class="amount__counter">
             <button class="counter__remove">-</button>
-            <input type="text" />
-            <button class="counter__add"></button>
+            <input class="counter__view" type="text" />
+            <button class="counter__add">+</button>
           </div>
           <div class="product__actions">
             <button class="action__cart"></button>
@@ -88,8 +93,36 @@ aside {
   font-weight: bold;
 }
 
-.product__description h4 {
+.product__description h4,
+.product__amount h4 {
   font-weight: bold;
+  margin-top: 20px;
+}
+
+.amount__counter {
+  width: 120px;
+  height: 30px;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+}
+
+.amount__counter button,
+.amount__counter input {
+  border: 1px solid #cacaca;
+  background-color: #fff;
+}
+
+.amount__counter button:hover,
+.amount__counter input:hover {
+  border: 1px solid #a1a1a1;
+}
+
+.counter__remove {
+  border-radius: 50% 0 0 50%;
+}
+
+.counter__add {
+  border-radius: 0 50% 50% 0;
 }
 </style>
 
@@ -106,7 +139,7 @@ export default {
     };
   },
   created() {
-    axios.get("http://127.0.0.1:5174/products.json").then((res) => {
+    axios.get("http://127.0.0.1:5173/products.json").then((res) => {
       const product = res.data.products.filter((element) => {
         return this.id == element.id;
       });
