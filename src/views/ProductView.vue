@@ -45,13 +45,23 @@
         <div class="product__amount">
           <h4>Quantidade</h4>
           <div class="amount__counter">
-            <button class="counter__remove">-</button>
-            <input class="counter__view" type="text" />
-            <button class="counter__add">+</button>
+            <button
+              class="counter__remove"
+              @click="counter > 0 ? counter-- : {}"
+            >
+              -
+            </button>
+            <input class="counter__view" type="text" v-model="counter" />
+            <button class="counter__add" @click="counter++">+</button>
           </div>
           <div class="product__actions">
-            <button class="action__cart"></button>
-            <button class="action__favorite"></button>
+            <button class="action__cart">
+              <img src="../assets/cart-add.svg" alt="" />
+              <span>Adicionar ao carrinho</span>
+            </button>
+            <button class="action__favorite">
+              <img src="../assets/favorite-inactive.svg" alt="" />
+            </button>
           </div>
         </div>
       </aside>
@@ -104,6 +114,7 @@ aside {
   height: 30px;
   display: grid;
   grid-template-columns: 30% 40% 30%;
+  margin: 10px 0;
 }
 
 .amount__counter button,
@@ -121,8 +132,16 @@ aside {
   border-radius: 50% 0 0 50%;
 }
 
+.counter__view {
+  text-align: center;
+}
+
 .counter__add {
   border-radius: 0 50% 50% 0;
+}
+
+.product__actions {
+  margin: 10px 0;
 }
 </style>
 
@@ -136,6 +155,7 @@ export default {
       image: "",
       title: "",
       price: "",
+      counter: 0,
     };
   },
   created() {
