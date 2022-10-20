@@ -60,7 +60,11 @@
               <span>Adicionar ao carrinho</span>
             </button>
             <button class="action__favorite">
-              <img src="../assets/favorite-inactive.svg" alt="" />
+              <img
+                v-on:click="addFavorite(this.product)"
+                src="../assets/favorite-inactive.svg"
+                alt=""
+              />
             </button>
           </div>
         </div>
@@ -130,6 +134,7 @@ aside {
 
 .counter__remove {
   border-radius: 50% 0 0 50%;
+  cursor: pointer;
 }
 
 .counter__view {
@@ -138,10 +143,46 @@ aside {
 
 .counter__add {
   border-radius: 0 50% 50% 0;
+  cursor: pointer;
 }
 
 .product__actions {
   margin: 10px 0;
+  display: flex;
+  gap: 8px;
+}
+
+.action__cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 190px;
+  padding: 8px 5px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.action__cart img {
+  filter: invert(1);
+}
+
+.action__cart span {
+  font-weight: bold;
+}
+
+.action__favorite {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 42px;
+  padding: 8px 5px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #cacaca;
+  cursor: pointer;
 }
 </style>
 
@@ -151,11 +192,14 @@ import axios from "axios";
 export default {
   data() {
     return {
-      id: this.$route.params.id,
-      image: "",
-      title: "",
-      price: "",
-      counter: 0,
+      product: {
+        id: this.$route.params.id,
+        image: "",
+        title: "",
+        price: "",
+        counter: 0,
+        favorite: [],
+      },
     };
   },
   created() {
@@ -168,6 +212,30 @@ export default {
       this.title = product[0].title;
       this.price = product[0].price;
     });
+  },
+
+  methods: {
+    addFavorite(product) {
+      // console.log(product);
+      this.favorite.push(product);
+      localStorage.setItem("favorite", JSON.stringify(this.favorite));
+    },
+
+    inFavorite(product) {
+      if (localStorage.getItem("favorite")) {
+        this.favorite = JSON.parse(localStorage.getItem("favorite"));
+      }
+      return this.favorite.find((element) => element["id"] == product.id)
+        ? true
+        : false;
+    },
+
+    removeFavorite(product) {
+      if (this.inFavorite(product)) {
+        this.favorite = this.favorite.filter((prod) => product.id !== prod.id);
+        localStorage.setItem("favorite", JSON.stringify(this.favorite));
+      }
+    },
   },
 };
 </script>
