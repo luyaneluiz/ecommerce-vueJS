@@ -2,7 +2,7 @@
   <main>
     <div class="product__container">
       <aside class="product__image">
-        <img :src="image" :alt="title" />
+        <img :src="product.image" :alt="title" />
       </aside>
 
       <aside>
@@ -44,26 +44,34 @@
 
         <div class="product__amount">
           <h4>Quantidade</h4>
+
           <div class="amount__counter">
             <button
               class="counter__remove"
-              @click="counter > 0 ? counter-- : {}"
+              @click="this.counter > 0 ? this.counter-- : {}"
             >
               -
             </button>
-            <input class="counter__view" type="text" v-model="counter" />
-            <button class="counter__add" @click="counter++">+</button>
+            <input class="counter__view" type="text" v-model="this.counter" />
+            <button class="counter__add" @click="this.counter++">+</button>
           </div>
+
           <div class="product__actions">
             <button class="action__cart">
               <img src="../assets/cart-add.svg" alt="" />
               <span>Adicionar ao carrinho</span>
             </button>
+
             <button class="action__favorite">
               <img
-                v-on:click="addFavorite(this.product)"
+                @click="addFavorite(product)"
+                v-if="!this.inFavorite"
                 src="../assets/favorite-inactive.svg"
-                alt=""
+              />
+              <img
+                @click="removeFavorite(product)"
+                v-if="this.inFavorite"
+                src="../assets/favorite.svg"
               />
             </button>
           </div>
@@ -197,26 +205,26 @@ export default {
         image: "",
         title: "",
         price: "",
-        counter: 0,
-        favorite: [],
+        inFavorite: "",
       },
+      counter: 0,
     };
   },
   created() {
     axios.get("http://127.0.0.1:5173/products.json").then((res) => {
       const product = res.data.products.filter((element) => {
-        return this.id == element.id;
+        return this.product.id == element.id;
       });
 
-      this.image = product[0].image;
+      this.product.image = product[0].image;
       this.title = product[0].title;
       this.price = product[0].price;
+      this.inFavorite = product[0].favorite;
     });
   },
 
   methods: {
     addFavorite(product) {
-      // console.log(product);
       this.favorite.push(product);
       localStorage.setItem("favorite", JSON.stringify(this.favorite));
     },

@@ -5,42 +5,48 @@
       "category": "Electronics",
       "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       "title": "SmartWatch Apple",
-      "price": "$ 300.00"
+      "price": "$ 300.00",
+      "inFavorite": "true"
     },
     {
       "id": 2,
       "category": "Electronics",
       "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZHVjdHxlbnwwfDF8MHx8&auto=format&fit=crop&w=400&q=60",
       "title": "HeadPhone Xiaomi",
-      "price": "$ 100.00"
+      "price": "$ 100.00",
+      "inFavorite": "false"
     },
     {
       "id": 3,
       "category": "Electronics",
       "image": "https://images.unsplash.com/photo-1564466809058-bf4114d55352?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2R1Y3R8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
       "title": "Camera Nikon",
-      "price": "$ 100.00"
+      "price": "$ 100.00",
+      "inFavorite": "false"
     },
     {
       "id": 4,
       "category": "Electronics",
       "image": "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2R1Y3R8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
       "title": "Camera Nikon",
-      "price": "$ 100.00"
+      "price": "$ 100.00",
+      "inFavorite": "false"
     },
     {
       "id": 5,
       "category": "Electronics",
       "image": "https://images.unsplash.com/photo-1555375771-14b2a63968a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHByb2R1Y3R8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
       "title": "iPhone XR",
-      "price": "$ 100.00"
+      "price": "$ 100.00",
+      "inFavorite": "false"
     },
     {
       "id": 6,
       "category": "Electronics",
       "image": "https://images.unsplash.com/photo-1516962126636-27ad087061cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODh8fHByb2R1Y3R8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
       "title": "Camera Polaroid",
-      "price": "$ 100.00"
+      "price": "$ 100.00",
+      "inFavorite": "false"
     }
   ]
 }
